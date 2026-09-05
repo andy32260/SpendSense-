@@ -1,6 +1,9 @@
 from rest_framework import viewsets
 from .models import Category, Transaction
 from .serializers import CategorySerializer, TransactionSerializer
+from rest_framework.response import Response
+from .services import detect_recurring_transactions
+from rest_framework.views import APIView
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -20,4 +23,10 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class RecurringTransactionsView(APIView):
+    def get(self, request):
+        results = detect_recurring_transactions(request.user)
+        return Response(results)
 
