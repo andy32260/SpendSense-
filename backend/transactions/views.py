@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from .models import Category, Transaction
 from .serializers import CategorySerializer, TransactionSerializer
 from rest_framework.response import Response
-from .services import detect_recurring_transactions
+from .services import detect_recurring_transactions, get_monthly_summary
 from rest_framework.views import APIView
 
 
@@ -30,3 +30,9 @@ class RecurringTransactionsView(APIView):
         results = detect_recurring_transactions(request.user)
         return Response(results)
 
+class MonthlySummaryView(APIView):
+    def get(self, request):
+        year = int(request.query_params.get('year'))
+        month = int(request.query_params.get('month'))
+        result = get_monthly_summary(request.user, year, month)
+        return Response(result)

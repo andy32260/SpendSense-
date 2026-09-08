@@ -1,7 +1,7 @@
 from collections import defaultdict
 from statistics import mean
 from .models import Transaction
-
+from django.db.models import Sum
 
 def clean_description(description):
     return description.lower().strip()
@@ -62,3 +62,14 @@ def detect_recurring_transactions(user):
         })
 
     return results
+
+
+def get_monthly_summary(user, year, month):
+    summary = Transaction.objects.filter(
+        user=user,
+        date__year=year,
+        date__month=month
+    ).values('category__name').annotate(total=Sum('amount'))
+    
+    return list(summary)
+

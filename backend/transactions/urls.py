@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import CategoryViewSet, TransactionViewSet
+from .views import CategoryViewSet, TransactionViewSet, MonthlySummaryView
 
 router = DefaultRouter()
 router.register(r'categories', CategoryViewSet, basename='category')
@@ -12,4 +12,5 @@ from .views import RecurringTransactionsView
 
 urlpatterns = [
     path('transactions/recurring/', RecurringTransactionsView.as_view(), name='recurring-transactions'),
+    path('transactions/summary/', MonthlySummaryView.as_view(), name='monthly-summary'),
 ] + router.urls
