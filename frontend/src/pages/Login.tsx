@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import apiClient from '../api/client';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,6 +18,7 @@ export default function Login() {
     try {
       const response = await apiClient.post('token/', { username, password });
       setTokens(response.data.access, response.data.refresh);
+      navigate('/dashboard');
     } catch (err) {
       setError('Invalid username or password');
     }
