@@ -9,6 +9,7 @@ export default function Navbar() {
         <nav>
             <Link to="/dashboard">Dashboard</Link>
             <Link to="/transactions">Transactions</Link>
+            <Link to="/budgets">Budgets</Link>
             <button onClick={() => setTokens(null, null)}>Logout</button>
         </nav>
         );
