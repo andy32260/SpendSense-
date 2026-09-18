@@ -8,6 +8,7 @@ import Budgets from './pages/Budgets';
 import SavingsGoals from './pages/SavingsGoal';
 import CreateTransaction from './pages/CreateTransaction';
 import CreateBudget from './pages/CreateBudget'
+import CreateSavingsGoal from './pages/CreateSavingsGoal';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/savings-goals" element={<ProtectedRoute><SavingsGoals /></ProtectedRoute>} />
         <Route path="/transactions/new" element={<ProtectedRoute><CreateTransaction /></ProtectedRoute>} />
         <Route path="/budgets/new" element={<ProtectedRoute><CreateBudget /></ProtectedRoute>} />
+        <Route path="/savings-goals/new" element={<ProtectedRoute><CreateSavingsGoal /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );

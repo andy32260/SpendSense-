@@ -13,3 +13,8 @@ export async function getSavingsGoals(): Promise<SavingsGoals[]> {
   const response = await apiClient.get('savings-goals/');
   return response.data;
 }
+
+export async function createSavingsGoal(name: string, target_amount: string, target_date: string) {
+  const response = await apiClient.post('savings-goals/', { name, target_amount, target_date});
+  return response.data;
+}

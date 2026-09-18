@@ -13,6 +13,7 @@ export default function Navbar() {
             <Link to="/savings-goals">Savings Goals</Link>
             <Link to="/transactions/new">Create Transaction</Link>
             <Link to="/budgets/new">Create Budget</Link>
+            <Link to="/savings-goals/new">Create Savings Goal</Link>
             <button onClick={() => setTokens(null, null)}>Logout</button>
         </nav>
         );
