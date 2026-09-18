@@ -1,13 +1,14 @@
 import {useState, useEffect} from 'react'
-import { createTransaction, getCategories, type Category} from '../api/transactions';
+import { getCategories, type Category} from '../api/transactions';
 import { useNavigate } from 'react-router-dom';
+import { createBudget } from '../api/budgets';
 
-export default function CreateTransaction() {
+export default function CreateBudget() {
     const [categories, setCategories] = useState<Category[]>([]);
     const [category, setCategory] = useState('')
     const [amount, setAmount] = useState('');
-    const [description, setDescription] = useState('');
-    const [date, setDate] = useState('');
+    const [start_date, setStartDate] = useState('');
+    const [end_date, setEndDate] = useState('');
     const navigate = useNavigate();
     const [error, setError] = useState('');
 
@@ -16,10 +17,10 @@ export default function CreateTransaction() {
     setError('');
 
     try {
-      await createTransaction(category, amount, description, date)
-      navigate('/transactions');
+      await createBudget(category, amount, start_date, end_date)
+      navigate('/budgets');
     } catch (err) {
-      setError('Transaction unsuccessful');
+      setError('Budget Creation Unsuccessful');
     }
   }
 
@@ -47,18 +48,18 @@ export default function CreateTransaction() {
             placeholder="£4.99"
           />
           <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Description"
+            type="date"
+            value={start_date}
+            onChange={(e) => setStartDate(e.target.value)}
+            placeholder="01/01/2026"
           />
           <input
             type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            placeholder="01/01/2026"
+            value={end_date}
+            onChange={(e) => setEndDate(e.target.value)}
+            placeholder="01/01/2027"
           />
-          <button type="submit">Create Transaction</button>
+          <button type="submit">Create Budget</button>
         </form>
     </div>
   );

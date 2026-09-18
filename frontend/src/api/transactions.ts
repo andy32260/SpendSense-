@@ -50,7 +50,7 @@ export async function getCategories(): Promise<Category[]> {
   return response.data;
 }
 
-export async function createTransaction(): Promise<Transaction[]> {
-  const response = await apiClient.get('transactions/');
+export async function createTransaction(category: string, amount: string, description: string, date: string): Promise<Transaction> {
+  const response = await apiClient.post('transactions/', { category, amount, description, date });
   return response.data;
 }

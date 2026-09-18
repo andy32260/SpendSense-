@@ -16,3 +16,9 @@ export async function getBudgets(): Promise<Budget[]> {
   const response = await apiClient.get('budgets/');
   return response.data;
 }
+
+export async function createBudget(category: string, amount: string, start_date: string, end_date: string) {
+  const response = await apiClient.post('budgets/', { category, amount, start_date, end_date });
+  return response.data;
+}
+
