@@ -13,6 +13,7 @@ import CreateSavingsGoal from './pages/CreateSavingsGoal';
 function App() {
   return (
     <BrowserRouter>
+      <div className="min-h-screen bg-slate-100">
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
@@ -25,6 +26,7 @@ function App() {
         <Route path="/budgets/new" element={<ProtectedRoute><CreateBudget /></ProtectedRoute>} />
         <Route path="/savings-goals/new" element={<ProtectedRoute><CreateSavingsGoal /></ProtectedRoute>} />
       </Routes>
+      </div>
     </BrowserRouter>
   );
 }

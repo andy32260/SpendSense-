@@ -54,3 +54,7 @@ export async function createTransaction(category: string, amount: string, descri
   const response = await apiClient.post('transactions/', { category, amount, description, date });
   return response.data;
 }
+
+export async function deleteTransaction(id: number): Promise<void> {
+  await apiClient.delete(`transactions/${id}/`);
+}
