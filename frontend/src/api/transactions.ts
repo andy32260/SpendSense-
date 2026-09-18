@@ -37,3 +37,20 @@ export async function getRecurringTransactions(): Promise<RecurringTransactionIt
   const response = await apiClient.get('transactions/recurring/');
   return response.data;
 }
+
+export interface Category {
+  id: number;
+  user: number;
+  name: string;
+  is_default: boolean;
+}
+
+export async function getCategories(): Promise<Category[]> {
+  const response = await apiClient.get('categories/');
+  return response.data;
+}
+
+export async function createTransaction(): Promise<Transaction[]> {
+  const response = await apiClient.get('transactions/');
+  return response.data;
+}

@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Budgets from './pages/Budgets';
 import SavingsGoals from './pages/SavingsGoal';
+import CreateTransaction from './pages/CreateTransaction';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/transactions" element={<ProtectedRoute><Transactions /></ProtectedRoute>} />
         <Route path="/budgets" element={<ProtectedRoute><Budgets /></ProtectedRoute>} />
         <Route path="/savings-goals" element={<ProtectedRoute><SavingsGoals /></ProtectedRoute>} />
+        <Route path="/transactions/new" element={<ProtectedRoute><CreateTransaction /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );
