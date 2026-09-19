@@ -22,3 +22,18 @@ export async function createSavingsGoal(name: string, target_amount: string, tar
 export async function deleteSavingsGoal(id: number): Promise<void> {
   await apiClient.delete(`savings-goals/${id}/`);
 }
+
+export async function editSavingsGoal(
+  id: number,
+  name: string,
+  target_amount: string,
+  target_date: string,
+): Promise<SavingsGoals> {
+  const response = await apiClient.patch(`savings-goals/${id}/`, { name, target_amount, target_date });
+  return response.data;
+}
+
+export async function getSavingsGoal(id: string): Promise<SavingsGoals> {
+  const response = await apiClient.get(`savings-goals/${id}/`);
+  return response.data;
+}

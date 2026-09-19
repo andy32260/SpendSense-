@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { getBudgets, deleteBudget, type Budget } from '../api/budgets';
+import { Link } from 'react-router-dom';
 
 export default function Budgets() {
     const [budgets, setBudgets] = useState<Budget[]>([]);
@@ -52,6 +53,9 @@ export default function Budgets() {
                   <div className={`h-full rounded-full ${barColor}`} style={{ width: `${percent}%` }} />
                 </div>
                 <p className="mt-2 text-xs text-slate-400">{bdgt.start_date} – {bdgt.end_date}</p>
+                <Link to={`/budgets/${bdgt.id}/edit`} className="mr-3 text-blue-600 hover:underline">
+                  Edit
+                </Link>
                 <button
                 onClick={() => handleDelete(bdgt.id)}
                 className="mt-3 text-sm text-red-600 hover:underline">

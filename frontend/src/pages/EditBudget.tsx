@@ -1,25 +1,26 @@
 import { useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react'
-import { editTransaction, getTransaction, getCategories, type Category } from '../api/transactions';
+import { editBudget, getBudget, type Budget } from '../api/budgets';
 import { useNavigate } from 'react-router-dom';
+import { getCategories, type Category } from '../api/transactions';
 
-export default function EditTransaction() {
+export default function EditBudget() {
     const { id } = useParams();
     const [category, setCategory] = useState<string>('')
     const [amount, setAmount] = useState<string>('')
-    const [description, setDescription] = useState<string>('')
-    const [date, setDate] = useState<string>('')
+    const [start_date, setStartDate] = useState<string>('')
+    const [end_date, setEndDate] = useState<string>('')
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
         async function fetchData() {
-            const result = await getTransaction(id!);
+            const result = await getBudget(id!);
             setCategory(String(result.category))
             setAmount(result.amount)
-            setDescription(result.description)
-            setDate(result.date)
+            setStartDate(result.start_date)
+            setEndDate(result.end_date)
         }
         fetchData()
     }, [])
@@ -38,18 +39,17 @@ export default function EditTransaction() {
         setError('');
     
         try {
-            await editTransaction(Number(id), category, amount, description, date)
-            navigate(`/transactions`);
+            await editBudget(Number(id), category, amount, start_date, end_date)
+            navigate(`/budgets`);
         } catch (err) {
-            setError('Transaction Change Unsuccessful');
+            setError('Budget Change Unsuccessful');
         }   
     }
-
 
     return (
     <div className="flex justify-center px-6 py-12">
         <form onSubmit={handleSubmit} className="flex w-full max-w-sm flex-col gap-4 rounded bg-white p-8 shadow">
-        <h1 className="text-xl font-bold text-slate-800">Edit Transaction</h1>
+        <h1 className="text-xl font-bold text-slate-800">Edit Budget</h1>
         <label className="flex flex-col gap-1 text-sm font-medium text-slate-700">
             Category
             <select
@@ -73,20 +73,20 @@ export default function EditTransaction() {
             />
         </label>
         <label className="flex flex-col gap-1 text-sm font-medium text-slate-700">
-            Description
+            Start Date
             <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            type="date"
+            value={start_date}
+            onChange={(e) => setStartDate(e.target.value)}
             className="rounded border border-slate-300 px-3 py-2 font-normal text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
         </label>
         <label className="flex flex-col gap-1 text-sm font-medium text-slate-700">
-            Date
+            End Date
             <input
             type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            value={end_date}
+            onChange={(e) => setEndDate(e.target.value)}
             className="rounded border border-slate-300 px-3 py-2 font-normal text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
         </label>

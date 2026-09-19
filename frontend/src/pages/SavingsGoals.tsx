@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { getSavingsGoals, deleteSavingsGoal, type SavingsGoals } from '../api/savings';
+import { Link } from 'react-router-dom';
 
 export default function SavingsGoals() {
     const [savingsGoals, setSavingsGoals] = useState<SavingsGoals[]>([]);
@@ -31,6 +32,9 @@ export default function SavingsGoals() {
               <h2 className="font-semibold text-slate-800">{svg.name}</h2>
               <p className="mt-2 text-2xl font-bold tabular-nums text-blue-600">£{svg.target_amount}</p>
               <p className="mt-1 text-xs text-slate-400">Target date: {svg.target_date}</p>
+              <Link to={`/savings-goals/${svg.id}/edit`} className="mr-3 text-blue-600 hover:underline">
+                Edit
+              </Link>
               <button
               onClick={() => handleDelete(svg.id)}
               className="mt-4 text-sm text-red-600 hover:underline">

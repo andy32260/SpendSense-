@@ -25,3 +25,19 @@ export async function createBudget(category: string, amount: string, start_date:
 export async function deleteBudget(id: number): Promise<void> {
   await apiClient.delete(`budgets/${id}/`);
 }
+
+export async function editBudget(
+  id: number,
+  category: string,
+  amount: string,
+  start_date: string,
+  end_date: string,
+): Promise<Budget> {
+  const response = await apiClient.patch(`budgets/${id}/`, { category, amount, start_date, end_date });
+  return response.data;
+}
+
+export async function getBudget(id: string): Promise<Budget> {
+  const response = await apiClient.get(`budgets/${id}/`);
+  return response.data;
+}
