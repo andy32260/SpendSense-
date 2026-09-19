@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { getTransactions, deleteTransaction, type Transaction } from '../api/transactions';
+import { Link } from 'react-router-dom';
 
 export default function Transactions() {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -42,6 +43,9 @@ export default function Transactions() {
                   <td className="px-6 py-4 text-slate-500">{txn.date}</td>
                   <td className="px-6 py-4 text-right font-semibold tabular-nums text-slate-900">£{txn.amount}</td>
                   <td className="px-6 py-4 text-right">
+                    <Link to={`/transactions/${txn.id}/edit`} className="mr-3 text-blue-600 hover:underline">
+                      Edit
+                    </Link>
                     <button onClick={() => handleDelete(txn.id)} className="text-red-600 hover:underline">
                       Delete
                     </button>

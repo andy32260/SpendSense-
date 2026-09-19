@@ -58,3 +58,18 @@ export async function createTransaction(category: string, amount: string, descri
 export async function deleteTransaction(id: number): Promise<void> {
   await apiClient.delete(`transactions/${id}/`);
 }
+export async function editTransaction(
+  id: number,
+  category: string,
+  amount: string,
+  description: string,
+  date: string
+): Promise<Transaction> {
+  const response = await apiClient.patch(`transactions/${id}/`, { category, amount, description, date });
+  return response.data;
+}
+
+export async function getTransaction(id: string): Promise<Transaction> {
+  const response = await apiClient.get(`transactions/${id}/`);
+  return response.data;
+}
