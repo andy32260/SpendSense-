@@ -18,3 +18,7 @@ export async function createSavingsGoal(name: string, target_amount: string, tar
   const response = await apiClient.post('savings-goals/', { name, target_amount, target_date});
   return response.data;
 }
+
+export async function deleteSavingsGoal(id: number): Promise<void> {
+  await apiClient.delete(`savings-goals/${id}/`);
+}

@@ -13,6 +13,7 @@ export default function Navbar() {
             <Link to="/savings-goals" className="hover:text-blue-400">Savings Goals</Link>
             <Link to="/transactions/new" className="hover:text-blue-400">Create Transaction</Link>
             <Link to="/budgets/new" className="hover:text-blue-400">Create Budget</Link>
+            <Link to="/savings-goals/new" className="hover:text-blue-400">Create Savings Goal</Link>
             <button onClick={() => setTokens(null, null)} className="ml-auto rounded bg-red-600 px-3 py-1 hover:bg-red-700">
                 Logout
             </button>

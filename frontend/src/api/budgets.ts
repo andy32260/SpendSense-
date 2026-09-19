@@ -22,3 +22,6 @@ export async function createBudget(category: string, amount: string, start_date:
   return response.data;
 }
 
+export async function deleteBudget(id: number): Promise<void> {
+  await apiClient.delete(`budgets/${id}/`);
+}

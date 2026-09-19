@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { getBudgets, type Budget } from '../api/budgets';
+import { getBudgets, deleteBudget, type Budget } from '../api/budgets';
 
 export default function Budgets() {
     const [budgets, setBudgets] = useState<Budget[]>([]);
@@ -11,6 +11,12 @@ export default function Budgets() {
     }
     fetchData();
     }, []);
+
+      async function handleDelete(id: number) {
+        await deleteBudget(id);
+        setBudgets((prev) => prev.filter((bdgt) => bdgt.id !== id));
+      }
+      
     
     return (
     <div className="mx-auto max-w-4xl px-6 py-8">
@@ -46,6 +52,11 @@ export default function Budgets() {
                   <div className={`h-full rounded-full ${barColor}`} style={{ width: `${percent}%` }} />
                 </div>
                 <p className="mt-2 text-xs text-slate-400">{bdgt.start_date} – {bdgt.end_date}</p>
+                <button
+                onClick={() => handleDelete(bdgt.id)}
+                className="mt-3 text-sm text-red-600 hover:underline">
+                Delete
+                </button>
               </li>
             );
           })}

@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { getSavingsGoals, type SavingsGoals } from '../api/savings';
+import { getSavingsGoals, deleteSavingsGoal, type SavingsGoals } from '../api/savings';
 
 export default function SavingsGoals() {
     const [savingsGoals, setSavingsGoals] = useState<SavingsGoals[]>([]);
@@ -11,6 +11,11 @@ export default function SavingsGoals() {
     }
     fetchData();
     }, []);
+
+    async function handleDelete(id: number) {
+      await deleteSavingsGoal(id);
+      setSavingsGoals((prev) => prev.filter((svg) => svg.id !== id));
+    }
     
     return (
     <div className="mx-auto max-w-4xl px-6 py-8">
@@ -26,6 +31,11 @@ export default function SavingsGoals() {
               <h2 className="font-semibold text-slate-800">{svg.name}</h2>
               <p className="mt-2 text-2xl font-bold tabular-nums text-blue-600">£{svg.target_amount}</p>
               <p className="mt-1 text-xs text-slate-400">Target date: {svg.target_date}</p>
+              <button
+              onClick={() => handleDelete(svg.id)}
+              className="mt-4 text-sm text-red-600 hover:underline">
+                Delete
+              </button>
             </li>
           ))}
         </ul>
