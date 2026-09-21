@@ -82,8 +82,3 @@ Done: full backend (models, auth, CRUD, recurring detection, monthly summary, ad
 
 Not yet built: savings goal projection/simulator (estimating how much sooner a goal is reached by reducing spending in a chosen category), chart-based visualizations (currently styled lists), and deployment (currently local-only).
 
-This section is here on purpose. The goal is an accurate account of the project, not an inflated one.
-
-## Honesty note
-
-Every line of backend logic, the recurring-detection algorithm's design, and the frontend architecture in this repository were written and understood by me, not generated wholesale and pasted in. Some later-stage Tailwind styling passes were done with AI assistance for speed on a task with no meaningful learning value, and that distinction matters to me, so I would rather state it plainly than have it assumed either way.
