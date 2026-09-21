@@ -19,34 +19,34 @@ export default function Transactions() {
     }
     
     return (
-    <div className="mx-auto max-w-4xl px-6 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-slate-800">Transactions</h1>
+    <div className="page">
+      <h1 className="page-title">Transactions</h1>
       {transactions.length === 0 ? (
-        <div className="rounded-lg bg-white p-8 text-center text-sm text-slate-500 shadow">
+        <div className="empty-state">
           No transactions yet.
         </div>
       ) : (
-        <div className="overflow-hidden rounded-lg bg-white shadow">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
-              <tr>
-                <th className="px-6 py-3 font-medium">Description</th>
-                <th className="px-6 py-3 font-medium">Date</th>
-                <th className="px-6 py-3 text-right font-medium">Amount</th>
-                <th className="px-6 py-3"></th>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+              <tr className="border-b border-ink/15">
+                <th className="py-3 pr-4 font-semibold">Description</th>
+                <th className="px-4 py-3 font-semibold">Date</th>
+                <th className="px-4 py-3 text-right font-semibold">Amount</th>
+                <th className="py-3 pl-4"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-line">
               {transactions.map((txn) => (
-                <tr key={txn.id} className="hover:bg-slate-50">
-                  <td className="px-6 py-4 text-slate-800">{txn.description}</td>
-                  <td className="px-6 py-4 text-slate-500">{txn.date}</td>
-                  <td className="px-6 py-4 text-right font-semibold tabular-nums text-slate-900">£{txn.amount}</td>
-                  <td className="px-6 py-4 text-right">
-                    <Link to={`/transactions/${txn.id}/edit`} className="mr-3 text-blue-600 hover:underline">
+                <tr key={txn.id} className="transition hover:bg-sunken/60">
+                  <td className="py-4 pr-4 font-medium text-ink">{txn.description}</td>
+                  <td className="px-4 py-4 text-sm tabular-nums text-ink-soft">{txn.date}</td>
+                  <td className="px-4 py-4 text-right text-lg font-semibold tabular-nums text-ink">£{txn.amount}</td>
+                  <td className="whitespace-nowrap py-4 pl-4 text-right">
+                    <Link to={`/transactions/${txn.id}/edit`} className="link-action mr-4">
                       Edit
                     </Link>
-                    <button onClick={() => handleDelete(txn.id)} className="text-red-600 hover:underline">
+                    <button onClick={() => handleDelete(txn.id)} className="link-danger">
                       Delete
                     </button>
                   </td>

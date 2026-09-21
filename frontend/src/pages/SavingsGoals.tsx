@@ -19,27 +19,29 @@ export default function SavingsGoals() {
     }
     
     return (
-    <div className="mx-auto max-w-4xl px-6 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-slate-800">Savings Goals</h1>
+    <div className="page">
+      <h1 className="page-title">Savings Goals</h1>
       {savingsGoals.length === 0 ? (
-        <div className="rounded-lg bg-white p-8 text-center text-sm text-slate-500 shadow">
+        <div className="empty-state">
           No savings goals yet.
         </div>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {savingsGoals.map((svg) => (
-            <li key={svg.id} className="rounded-lg bg-white p-6 shadow">
-              <h2 className="font-semibold text-slate-800">{svg.name}</h2>
-              <p className="mt-2 text-2xl font-bold tabular-nums text-blue-600">£{svg.target_amount}</p>
-              <p className="mt-1 text-xs text-slate-400">Target date: {svg.target_date}</p>
-              <Link to={`/savings-goals/${svg.id}/edit`} className="mr-3 text-blue-600 hover:underline">
-                Edit
-              </Link>
-              <button
-              onClick={() => handleDelete(svg.id)}
-              className="mt-4 text-sm text-red-600 hover:underline">
-                Delete
-              </button>
+            <li key={svg.id} className="card flex flex-col border-line bg-surface">
+              <h2 className="text-lg font-semibold text-ink-soft">{svg.name}</h2>
+              <p className="figure mt-3 text-4xl text-pine">£{svg.target_amount}</p>
+              <p className="mt-2 text-sm text-ink-muted">Target date: {svg.target_date}</p>
+              <div className="mt-6 flex gap-4 border-t border-line pt-4">
+                <Link to={`/savings-goals/${svg.id}/edit`} className="link-action">
+                  Edit
+                </Link>
+                <button
+                onClick={() => handleDelete(svg.id)}
+                className="link-danger">
+                  Delete
+                </button>
+              </div>
             </li>
           ))}
         </ul>

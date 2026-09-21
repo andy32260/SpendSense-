@@ -7,6 +7,7 @@ class SavingsGoal(models.Model):
     target_amount = models.DecimalField(max_digits=10, decimal_places=2)
     target_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
+    current_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         return self.name

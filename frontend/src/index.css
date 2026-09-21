@@ -1,1 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT@9..144,500..700,0..100&display=swap');
 @import "tailwindcss";
+
+/* SpendSense - "Pine & Paper"
+   One brand green that also means "on track". Saffron = nearing a limit,
+   terracotta = over / destructive. Everything else is warm neutrals. */
+@theme {
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+
+  --color-paper: #f4f1ea;
+  --color-surface: #fbfaf6;
+  --color-sunken: #eae6dc;
+  --color-line: #ddd8cb;
+
+  --color-ink: #14231f;
+  --color-ink-soft: #56635e;
+  --color-ink-muted: #586661;
+
+  --color-pine: #1e5e4e;
+  --color-pine-deep: #174a3e;
+  --color-pine-tint: #dcebe1;
+  --color-fern: #2e8b6a;
+  --color-mint: #9bd9bc;
+
+  --color-saffron: #d9982b;
+  --color-saffron-tint: #f7e9c9;
+  --color-saffron-ink: #7a4e08;
+
+  --color-terracotta: #c4472f;
+  --color-terracotta-tint: #f6ddd6;
+  --color-terracotta-ink: #9b3320;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    background-color: var(--color-paper);
+  }
+
+  body {
+    @apply font-sans text-ink antialiased;
+    background-color: var(--color-paper);
+    /* soft brand wash at the top + very faint paper grain */
+    background-image:
+      radial-gradient(60rem 26rem at 50% -10rem, rgb(30 94 78 / 0.11), transparent 70%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .08 0 0 0 0 .14 0 0 0 0 .12 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, repeat;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 60;
+  }
+
+  ::selection {
+    background-color: var(--color-pine-tint);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* Layout */
+  .page {
+    @apply mx-auto max-w-5xl px-6 py-10;
+  }
+
+  .page-title {
+    @apply mb-8 text-4xl font-semibold tracking-tight text-ink;
+  }
+
+  /* Surfaces: depth from tone + a hairline highlight, not drop shadows */
+  .card {
+    @apply rounded-3xl border p-6 sm:p-7;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.8);
+  }
+
+  .empty-state {
+    @apply rounded-2xl border border-dashed border-line bg-surface/60 px-6 py-12 text-center text-sm text-ink-soft;
+  }
+
+  /* Big numbers: display face, lining + tabular so they align */
+  .figure {
+    @apply font-display font-semibold tracking-tight tabular-nums lining-nums;
+    font-variation-settings: 'SOFT' 60;
+  }
+
+  /* Row / card actions */
+  .link-action {
+    @apply text-sm font-medium text-ink-soft underline-offset-4 transition hover:text-pine hover:underline;
+  }
+
+  .link-danger {
+    @apply text-sm font-medium text-ink-muted underline-offset-4 transition hover:text-terracotta hover:underline;
+  }
+
+  /* Forms */
+  .form-card {
+    @apply flex w-full max-w-md flex-col gap-5 rounded-3xl border border-line bg-surface p-8;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.8);
+  }
+
+  .form-title {
+    @apply text-3xl font-semibold tracking-tight text-ink;
+  }
+
+  .field-label {
+    @apply flex flex-col gap-1.5 text-sm font-medium text-ink-soft;
+  }
+
+  .field-input {
+    @apply rounded-xl border border-transparent bg-sunken px-3.5 py-2.5 font-normal text-ink outline-none transition placeholder:text-ink-muted focus:border-pine focus:bg-surface focus:ring-2 focus:ring-pine/25;
+  }
+
+  .form-error {
+    @apply rounded-xl bg-terracotta-tint px-3.5 py-2.5 text-sm font-medium text-terracotta-ink;
+  }
+
+  .btn-primary {
+    @apply rounded-xl bg-pine px-4 py-3 font-semibold text-surface transition hover:bg-pine-deep active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine;
+  }
+}

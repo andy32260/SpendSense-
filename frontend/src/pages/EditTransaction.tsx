@@ -48,14 +48,14 @@ export default function EditTransaction() {
 
     return (
     <div className="flex justify-center px-6 py-12">
-        <form onSubmit={handleSubmit} className="flex w-full max-w-sm flex-col gap-4 rounded bg-white p-8 shadow">
-        <h1 className="text-xl font-bold text-slate-800">Edit Transaction</h1>
-        <label className="flex flex-col gap-1 text-sm font-medium text-slate-700">
+        <form onSubmit={handleSubmit} className="form-card">
+        <h1 className="form-title">Edit Transaction</h1>
+        <label className="field-label">
             Category
             <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="rounded border border-slate-300 bg-white px-3 py-2 font-normal text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="field-input"
             >
             <option value="">Select a category</option>
             {categories.map((cat) => (
@@ -63,35 +63,39 @@ export default function EditTransaction() {
             ))}
             </select>
         </label>
-        <label className="flex flex-col gap-1 text-sm font-medium text-slate-700">
+        <label className="field-label">
             Amount
-            <input
-            type="text"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="rounded border border-slate-300 px-3 py-2 font-normal text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
+            <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted">£</span>
+                <input
+                type="text"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder="4.99"
+                className="field-input w-full pl-7"
+                />
+            </div>
         </label>
-        <label className="flex flex-col gap-1 text-sm font-medium text-slate-700">
+        <label className="field-label">
             Description
             <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="rounded border border-slate-300 px-3 py-2 font-normal text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="field-input"
             />
         </label>
-        <label className="flex flex-col gap-1 text-sm font-medium text-slate-700">
+        <label className="field-label">
             Date
             <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="rounded border border-slate-300 px-3 py-2 font-normal text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="field-input"
             />
         </label>
-        {error && <p className="text-sm text-red-600">{error}</p>}
-        <button type="submit" className="rounded bg-blue-600 py-2 text-white hover:bg-blue-700">
+        {error && <p className="form-error">{error}</p>}
+        <button type="submit" className="btn-primary">
             Save Changes
         </button>
         </form>

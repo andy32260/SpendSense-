@@ -16,7 +16,7 @@ import EditBudget from './pages/EditBudget';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-slate-100">
+      <div className="min-h-screen">
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />

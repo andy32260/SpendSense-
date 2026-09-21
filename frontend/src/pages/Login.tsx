@@ -25,25 +25,25 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100">
-      <form onSubmit={handleSubmit} className="flex w-80 flex-col gap-4 rounded bg-white p-8 shadow">
-        <h1 className="text-xl font-bold text-slate-800">Log In</h1>
+    <div className="flex min-h-[calc(100vh-5rem)] items-center justify-center px-6 py-12">
+      <form onSubmit={handleSubmit} className="form-card max-w-sm">
+        <h1 className="form-title">Log In</h1>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
-          className="rounded border border-slate-300 px-3 py-2"
+          className="field-input"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="rounded border border-slate-300 px-3 py-2"
+          className="field-input"
         />
-        {error && <p className="text-sm text-red-600">{error}</p>}
-        <button type="submit" className="rounded bg-blue-600 py-2 text-white hover:bg-blue-700">
+        {error && <p className="form-error">{error}</p>}
+        <button type="submit" className="btn-primary">
           Log In
         </button>
       </form>
