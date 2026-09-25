@@ -27,6 +27,12 @@ The algorithm doesn't hardcode "monthly." It works off whatever interval is actu
 
 This logic is covered by automated tests (transactions/tests.py), including a case that caught a real floating-point precision issue in PostgreSQL's SUM() over Decimal columns, resolved with assertAlmostEqual rather than exact equality. This was a real bug found and fixed during development, not a hypothetical.
 
+## Savings goal projection
+
+Given a savings goal and a chosen set of categories with hypothetical reduction percentages (e.g. cut Takeaway by 20%, Coffee Shop by 10%), calculate_projection() estimates how many months it would take to cover the remaining goal amount using only the money freed up by those cuts.
+
+This deliberately doesn't claim to know a user's income or true savings rate, since the app has no income model. The result is framed honestly as "at this freed-up rate alone, covering the rest would take approximately X months", not as a claim about someone's actual overall timeline. Covered by automated tests, including the zero-reduction edge case where no valid projection exists.
+
 ## Other backend features
 
 - User-scoped everything. Every queryset is filtered by the authenticated user (get_queryset), and every create operation injects the user server-side (perform_create), never trusting a client-supplied user field.
@@ -78,7 +84,10 @@ Runs at http://localhost:5173, expecting the backend at http://127.0.0.1:8000.
 
 ## What's built vs what's next
 
-Done: full backend (models, auth, CRUD, recurring detection, monthly summary, admin, automated tests), full frontend CRUD across all three resources, protected routing, styled UI.
+Done: full backend (models, auth, CRUD, recurring detection, monthly summary, savings goal projection, admin, automated tests), full frontend CRUD across all three resources, protected routing, styled UI.
 
-Not yet built: savings goal projection/simulator (estimating how much sooner a goal is reached by reducing spending in a chosen category), chart-based visualizations (currently styled lists), and deployment (currently local-only).
+Not yet built: chart-based visualizations (currently styled lists), a frontend UI for the savings goal projection feature (backend logic and tests are complete), and deployment (currently local-only).
 
+## A note on AI use
+
+Some parts of this project were built with AI assistance, including guided learning while writing the backend and frontend logic, and a later Tailwind styling pass done more directly for speed. The core logic, including the recurring-detection algorithm and the projection calculation was written and understood by me.
