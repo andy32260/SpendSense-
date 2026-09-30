@@ -32,6 +32,7 @@ export default function Navbar() {
             <NavLink to="/transactions" end className={pageLink}>Transactions</NavLink>
             <NavLink to="/budgets" end className={pageLink}>Budgets</NavLink>
             <NavLink to="/savings-goals" end className={pageLink}>Savings Goals</NavLink>
+            <NavLink to="/savings-projection" end className={pageLink}>Projection</NavLink>
             <div className="ml-auto flex flex-wrap items-center gap-2">
                 <NavLink to="/transactions/new" end className={createLink}>+ Transaction</NavLink>
                 <NavLink to="/budgets/new" end className={createLink}>+ Budget</NavLink>

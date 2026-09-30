@@ -7,6 +7,7 @@ export interface SavingsGoals {
     target_amount: string;
     target_date: string;
     created_at: string;
+    current_amount: string;
 }
 
 export async function getSavingsGoals(): Promise<SavingsGoals[]> {
@@ -35,5 +36,18 @@ export async function editSavingsGoal(
 
 export async function getSavingsGoal(id: string): Promise<SavingsGoals> {
   const response = await apiClient.get(`savings-goals/${id}/`);
+  return response.data;
+}
+
+export interface Reduction {
+  category_id: number;
+  percentage: number;
+}
+
+export async function getProjection(savingsGoalId: number, reductions: Reduction[]): Promise<number> {
+  const response = await apiClient.post('savings-goals/projection/', {
+    savings_goal_id: savingsGoalId,
+    reductions: reductions,
+  });
   return response.data;
 }

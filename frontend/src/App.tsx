@@ -12,6 +12,7 @@ import CreateSavingsGoal from './pages/CreateSavingsGoal';
 import EditTransaction from './pages/EditTransaction';
 import EditSavingsGoal from './pages/EditSavingsGoal';
 import EditBudget from './pages/EditBudget';
+import SavingsProjection from './pages/SavingsProjection';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/transactions/:id/edit" element={<ProtectedRoute><EditTransaction /></ProtectedRoute>} />
         <Route path="/savings-goals/:id/edit" element={<ProtectedRoute><EditSavingsGoal /></ProtectedRoute>} />
         <Route path="/budgets/:id/edit" element={<ProtectedRoute><EditBudget /></ProtectedRoute>} />
+        <Route path="/savings-projection" element={<ProtectedRoute><SavingsProjection /></ProtectedRoute>} />
       </Routes>
       </div>
     </BrowserRouter>
