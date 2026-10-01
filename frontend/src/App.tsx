@@ -3,7 +3,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Transactions from './pages/Transactions';
 import ProtectedRoute from './components/ProtectedRoute';
-import Navbar from './components/Navbar';
+import AppShell from './components/AppShell';
 import Budgets from './pages/Budgets';
 import SavingsGoals from './pages/SavingsGoals';
 import CreateTransaction from './pages/CreateTransaction';
@@ -17,24 +17,23 @@ import SavingsProjection from './pages/SavingsProjection';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen">
-      <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/transactions" element={<ProtectedRoute><Transactions /></ProtectedRoute>} />
-        <Route path="/budgets" element={<ProtectedRoute><Budgets /></ProtectedRoute>} />
-        <Route path="/savings-goals" element={<ProtectedRoute><SavingsGoals /></ProtectedRoute>} />
-        <Route path="/transactions/new" element={<ProtectedRoute><CreateTransaction /></ProtectedRoute>} />
-        <Route path="/budgets/new" element={<ProtectedRoute><CreateBudget /></ProtectedRoute>} />
-        <Route path="/savings-goals/new" element={<ProtectedRoute><CreateSavingsGoal /></ProtectedRoute>} />
-        <Route path="/transactions/:id/edit" element={<ProtectedRoute><EditTransaction /></ProtectedRoute>} />
-        <Route path="/savings-goals/:id/edit" element={<ProtectedRoute><EditSavingsGoal /></ProtectedRoute>} />
-        <Route path="/budgets/:id/edit" element={<ProtectedRoute><EditBudget /></ProtectedRoute>} />
-        <Route path="/savings-projection" element={<ProtectedRoute><SavingsProjection /></ProtectedRoute>} />
+        <Route element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/budgets" element={<Budgets />} />
+          <Route path="/savings-goals" element={<SavingsGoals />} />
+          <Route path="/transactions/new" element={<CreateTransaction />} />
+          <Route path="/budgets/new" element={<CreateBudget />} />
+          <Route path="/savings-goals/new" element={<CreateSavingsGoal />} />
+          <Route path="/transactions/:id/edit" element={<EditTransaction />} />
+          <Route path="/savings-goals/:id/edit" element={<EditSavingsGoal />} />
+          <Route path="/budgets/:id/edit" element={<EditBudget />} />
+          <Route path="/savings-projection" element={<SavingsProjection />} />
+        </Route>
       </Routes>
-      </div>
     </BrowserRouter>
   );
 }
